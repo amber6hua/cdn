@@ -18,6 +18,7 @@
     <title><!--Title--></title>
     <meta charset=utf-8>
     <script src="https://cdn.jsdelivr.net/npm/cplayer/dist/cplayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flv.js@1.6.2/dist/flv.min.js"></script>
     <meta http-equiv=X-UA-Compatible content="IE=edge">
     <meta name=viewport content="width=device-width,initial-scale=1">
     <meta name="keywords" content="<!--Keywords-->">
@@ -732,6 +733,20 @@
                     loading: '<img src="https://artplayer.org/assets/img/ploading.gif">',
                     state: '<img width="150" heigth="150" src="https://artplayer.org/assets/img/state.svg">',
                     indicator: '<img width="16" heigth="16" src="https://artplayer.org/assets/img/indicator.svg">',
+                },
+                customType: {
+                    flv: function (video, url) {
+                        if (flvjs.isSupported()) {
+                            const flvPlayer = flvjs.createPlayer({
+                                type: 'mp4',
+                                url: url,
+                            });
+                            flvPlayer.attachMediaElement(video);
+                            flvPlayer.load();
+                        } else {
+                            art.notice.show = '不支持播放格式：flv';
+                        }
+                    },
                 },
             });
 
