@@ -1,0 +1,11 @@
+#构建docker镜像
+docker build -t alist-tvbox-tgs .
+
+#登录
+docker login
+
+#修改镜像名称
+docker tag alist-tvbox-tgs:latest amber6hua/alist-tvbox-tgs:latest
+
+#上传docker镜像
+docker push amber6hua/alist-tvbox-tgs:latest
